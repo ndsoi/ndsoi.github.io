@@ -3,3 +3,12 @@
   font-weight: bold;
   padding: 16px;
 }
+
+
+.selected{
+	background-color: yellow;
+}
+
+.noselected{
+
+}

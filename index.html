@@ -6,16 +6,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>心理测评</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="index.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="./main.css" />
+
 </head>
 <body>
 	<div id="app">
-		app
-	</div>
-    <div id="main-content">
 
-    </div>
+	
+		<li v-for="(Que,index) in questions"  :key="index">
+			<p>问题{{index+1}}: {{Que}}</p>
+				<p v-for="(str,cid) in options" :key="cid">
+				<button @click="makechose(index,cid+1)" :class="{  'noselected':  cid+1 !== chose[index],
+                    'selected': cid+1 === chose[index]}">{{str}}</button>
+      
+                </p>
+			
+			
+		</li>
+
+	</div>
+
 </body>
 <script type="text/javascript" src="./index.js"></script>
 </html>
