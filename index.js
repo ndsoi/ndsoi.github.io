@@ -128,7 +128,7 @@ createApp({
 			}
 
 		 	this.final_score = 0;
-		 	this.is_closs_f = 0;
+		 	this.isclose_f = 0;
 		 	this.pressure_f = 0;
 		 	this.closs = 0;
 		 	this.balance = 0;
