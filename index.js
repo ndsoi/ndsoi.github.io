@@ -143,7 +143,7 @@ createApp({
 		 		}
 
 
-		 		if((i<4)||((i>16)&&(i<20)))
+		 		if((i<4)||((i>=16)&&(i<20)))
 		 		{
 		 			this.closs += this.score[i][this.chose[i]-1];
 		 		}
@@ -162,7 +162,7 @@ createApp({
 		 		{
 		 			this.outoforder += this.score[i][this.chose[i]-1];
 		 		}
-		 		if(((i>=12)&&(i<16))||((i>=28)||(i<32)))
+		 		if(((i>=12)&&(i<16))||((i>=28)&&(i<32)))
 		 		{
 		 			this.lessenergy += this.score[i][this.chose[i]-1];
 		 		}
