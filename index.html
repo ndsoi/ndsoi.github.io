@@ -24,10 +24,24 @@
 			
 		</li>
 
-	</div>
-<!-- 	<div id="main-content">
+		<button class="confirm" @click="calculate()">确认答案</button>
 
-	</div> -->
+		<div v-if="see_score === true">
+				<head>下滑查看结果</head>
+				<p>总熵值是:{{final_score}},暂时处于{{state}}</p>
+				<p>关于封闭程度的得分:{{iscloss_f}},暂时为{{is_closs_type}}</p>
+				<p>关于做功阻力的得分:{{pressure_f}},暂时为{{pressure_type}}</p>
+				<p>--------------------------------</p>
+				<p>五向熵维计算</p>
+				<p>封闭性得分:{{closs}}</p>
+				<p>平衡态得分:{{balance}}</p>
+				<p>高线性得分:{{high}}</p>
+				<p>内心失序得分:{{outoforder}}</p>
+				<p>能量失焦得分:{{lessenergy}}</p>
+		</div>
+
+	</div>
+
 
 </body>
 <script type="text/javascript" src="./index.js"></script>

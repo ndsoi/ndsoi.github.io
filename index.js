@@ -48,6 +48,64 @@ createApp({
 				   0,0,0,0,0,0,0,0,
 				   0,0,0,0,0,0,0,0],
 			text:'无',
+
+			// 选项的对应得分
+			score:[
+				[5,4,3,2,1],		//1
+				[5,4,3,2,1],
+				[1,2,3,4,5],
+				[5,4,3,2,1],
+				[1,2,3,4,5],		//5
+				[1,2,3,4,5],
+				[5,4,3,2,1],
+				[5,4,3,2,1],
+				[1,2,3,4,5],
+				[1,2,3,4,5],		//10
+				[1,2,3,4,5],
+				[1,2,3,4,5],
+				[5,4,3,2,1],
+				[5,4,3,2,1],
+				[1,2,3,4,5],		//15
+				[5,4,3,2,1],
+				[5,4,3,2,1],
+				[5,4,3,2,1],
+				[1,2,3,4,5],
+				[5,4,3,2,1],		//20
+				[1,2,3,4,5],
+				[1,2,3,4,5],
+				[5,4,3,2,1],
+				[5,4,3,2,1],
+				[1,2,3,4,5],		// 25
+				[1,2,3,4,5],
+				[1,2,3,4,5],
+				[1,2,3,4,5],
+				[1,2,3,4,5],
+				[5,4,3,2,1],
+				[1,2,3,4,5],
+				[5,4,3,2,1],
+			],
+
+
+			see_score:false,
+
+
+			// 结果存储
+			final_score:0,
+			state:'',	//低熵?
+			isclose_f:0,
+			is_closs_tyoe:'',
+			pressure_f:0,
+			pressure_type:'',
+
+
+			// 五项得分
+			closs:0,
+			balance:0,
+			high:0,
+			outoforder:0,
+			lessenergy:0,
+
+
 		}
 
 	},
@@ -57,7 +115,98 @@ createApp({
 
 			this.chose[index] = cid;
 			this.text = '改变了';
-	}
+		},	
+
+		calculate(){
+			// 检查是否全部填写完毕
+			for (var i = 0; i < this.chose.length; i++) {
+		 		if(this.chose[i]==0)
+		 		{
+		 			alert("还有问题没有作答");
+		 			return;
+		 		}
+			}
+
+		 	this.final_score = 0;
+
+		 	for (var i = 0; i < this.questions.length; i++) {
+
+		 		if((i<8) || ((i>=16)&&(i<24)))
+		 		{
+		 			// 封闭
+		 			this.isclose_f += this.score[i][this.chose[i]-1];
+		 		}
+		 		else
+		 		{
+		 			// 做工阻力
+		 			this.pressure_f += this.score[i][this.chose[i]-1];
+		 		}
+
+
+		 		if((i<4)||((i>16)&&(i<20)))
+		 		{
+		 			this.closs += this.score[i][this.chose[i]-1];
+		 		}
+
+		 		if(((i>=4)&&(i<6))||((i>=20)&&(i<22)))
+		 		{
+		 			this.balance += this.score[i][this.chose[i]-1];
+		 		}
+
+		 		if((i==6)||(i==7)||(i==22)||(i==23))
+		 		{
+		 			this.high += this.score[i][this.chose[i]-1];
+		 		}
+
+		 		if(((i>=8)&&(i<12))||((i>=24)&&(i<28)))
+		 		{
+		 			this.outoforder += this.score[i][this.chose[i]-1];
+		 		}
+		 		if(((i>=12)&&(i<16))||((i>=28)||(i<32)))
+		 		{
+		 			this.lessenergy += this.score[i][this.chose[i]-1];
+		 		}
+		 		this.final_score += this.score[i][this.chose[i]-1];
+			}
+			this.see_score = true;
+			
+			this.text = "总熵值是:"+this.final_score;
+			if(this.final_score<=64)
+			{
+				this.state = "低熵";
+			}
+			else if(this.final_score>=128)
+			{
+				this.state = "高熵";
+			}
+			else
+			{
+				this.state = "中熵";
+			}
+
+			if(this.isclose_f>40)
+			{
+				this.is_closs_type = "固化型思维";
+			}
+			else
+			{
+				this.is_closs_type = "成长型思维";
+			}
+
+			if(this.pressure_f>40)
+			{
+				this.pressure_type = "内耗型做功倾向";
+			}
+			else
+			{
+				this.pressure_type = "增效型做功倾向";
+			}
+
+			
+
+		},
+
+
 }
 
 
