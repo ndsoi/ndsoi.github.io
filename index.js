@@ -117,7 +117,7 @@ createApp({
 			this.text = '改变了';
 		},	
 
-		calculate(){
+		calculate:function(){
 			// 检查是否全部填写完毕
 			for (var i = 0; i < this.chose.length; i++) {
 		 		if(this.chose[i]==0)
